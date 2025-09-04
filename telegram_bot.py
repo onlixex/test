@@ -3,6 +3,7 @@
 
 import re
 import json
+import os
 import logging
 from typing import Optional, Dict, Any
 
@@ -34,16 +35,16 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s:%(name
 log = logging.getLogger(__name__)
 
 # ---------------------------
-# КОНФИГ (подставлены твои токены/пароли)
+# КОНФИГ (через переменные окружения с разумными значениями по умолчанию)
 # ---------------------------
-TELEGRAM_TOKEN = "8286351251:AAHI5T5ccOxZ_CmE6mgpEXBoNkJNc5O9oj0"
-POSTGRES_DSN = "postgresql://helpdesk_user:123QWE456rty@127.0.0.1:5432/helpdesk"
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "8286351251:AAHI5T5ccOxZ_CmE6mgpEXBoNkJNc5O9oj0")
+POSTGRES_DSN = os.getenv("POSTGRES_DSN", "postgresql://helpdesk_user:123QWE456rty@127.0.0.1:5432/helpdesk")
 
-ZAMMAD_BASE_URL = "http://127.0.0.1:3000"
-ZAMMAD_TOKEN = "i3Y4nf4txmzkp4mxKyCZrdesq0q3YcbU-8CtStaFrd87BZAeoxKSxTtohLPwvEZI"
+ZAMMAD_BASE_URL = os.getenv("ZAMMAD_BASE_URL", "http://127.0.0.1:3000")
+ZAMMAD_TOKEN = os.getenv("ZAMMAD_TOKEN", "i3Y4nf4txmzkp4mxKyCZrdesq0q3YcbU-8CtStaFrd87BZAeoxKSxTtohLPwvEZI")
 
 # Zero-shot service
-ZERO_SHOT_URL = "http://127.0.0.1:8000/zero-shot"
+ZERO_SHOT_URL = os.getenv("ZERO_SHOT_URL", "http://127.0.0.1:8000/classify/")
 
 # Кнопка-клавиатура для контакта
 CONTACT_KB = ReplyKeyboardMarkup(
